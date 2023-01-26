@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Inicio"
+        android:icon="@drawable/ic_baseline_storefront_24"></item>
+    <item
+        android:id="@+id/favouriteFragment"
+        android:title="Favoritos"
+        android:icon="@drawable/ic_baseline_favorite_border_24"
+        ></item>
+    <item
+        android:id="@+id/uploadFragment"
+        android:title="Subir"
+        android:icon="@drawable/ic_baseline_add_circle_outline_24"></item>
+    <item
+        android:id="@+id/buzonFragment"
+        android:title="Buzón"
+        android:icon="@drawable/ic_baseline_mail_outline_24"></item>
+    <item
+        android:id="@+id/tuFragment"
+        android:title="Tú"
+        android:icon="@drawable/ic_baseline_tag_faces_24"></item>
+</menu>

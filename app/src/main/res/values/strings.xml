@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Actividad3A</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="e_mail">E-mail</string>
+    <string name="iniciar_sesion">Ya tienes cuenta? <a>Iniciar sesión</a></string>
+    <string name="registrarse">No tienes cuenta? <a>Registrarse</a></string>
+    <string name="apellidos">Apellidos</string>
+    <string name="desconocido">Desconocido</string>
+    <string name="desconocidos">Desconocidos</string>
+    <string name="nombre">Nombre</string>
+    <string name="email">Email</string>
+    <string name="fecha_nacimiento">Fecha nacimiento</string>
+</resources>
