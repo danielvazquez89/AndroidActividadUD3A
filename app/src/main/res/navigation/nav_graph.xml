@@ -56,10 +56,19 @@
         android:id="@+id/tuFragment"
         android:name="com.example.actividad3a.TuFragment"
         android:label="fragment_tu"
-        tools:layout="@layout/fragment_tu" />
+        tools:layout="@layout/fragment_tu" >
+        <action
+            android:id="@+id/action_tuFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
+    </fragment>
     <fragment
         android:id="@+id/uploadFragment"
         android:name="com.example.actividad3a.UploadFragment"
         android:label="fragment_upload"
         tools:layout="@layout/fragment_upload" />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.actividad3a.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
 </navigation>
