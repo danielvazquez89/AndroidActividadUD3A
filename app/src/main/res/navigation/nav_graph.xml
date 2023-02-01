@@ -41,6 +41,12 @@
         <argument
             android:name="user"
             app:argType="com.example.actividad3a.RegisterFragment$User" />
+        <action
+            android:id="@+id/action_homeFragment_to_gamesByGenreFragment"
+            app:destination="@id/gamesByGenreFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_gameDescriptionFragment"
+            app:destination="@id/gameDescriptionFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
@@ -62,4 +68,18 @@
         android:name="com.example.actividad3a.UploadFragment"
         android:label="fragment_upload"
         tools:layout="@layout/fragment_upload" />
+    <fragment
+        android:id="@+id/gamesByGenreFragment"
+        android:name="com.example.actividad3a.GamesByGenreFragment"
+        android:label="fragment_games_by_genre"
+        tools:layout="@layout/fragment_games_by_genre" >
+        <action
+            android:id="@+id/action_gamesByGenreFragment_to_gameDescriptionFragment"
+            app:destination="@id/gameDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameDescriptionFragment"
+        android:name="com.example.actividad3a.GameDescriptionFragment"
+        android:label="fragment_game_description"
+        tools:layout="@layout/fragment_game_description" />
 </navigation>

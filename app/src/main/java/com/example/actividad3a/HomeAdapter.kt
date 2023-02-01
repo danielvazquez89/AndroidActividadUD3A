@@ -1,5 +1,6 @@
 package com.example.actividad3a
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,10 +21,12 @@ class HomeAdapter(private val mDataSet: List<genre_content>, var onClick: (genre
         data.let { holder.bindItems(it) }
         holder.itemView.setOnClickListener {
             onClick(data)
+            Log.i("pepa", "entras?")
             //if (data)
               //  holder.mytexto.text = "\uFEFF\uD83D\uDCA5\uFEFF"
             //else
               //  holder.mytexto.text = "\uFEFF\uD83D\uDEA9\uFEFF "
+
         }
     }
 

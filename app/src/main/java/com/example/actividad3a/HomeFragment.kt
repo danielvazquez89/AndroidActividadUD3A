@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var bottomNav = activity?.findViewById(R.id.bottom_navigation) as BottomNavigationView
         bottomNav.isVisible = true
 
@@ -49,6 +51,10 @@ class HomeFragment : Fragment() {
         datos = args.user
 
         val mAdapter = HomeAdapter(genre_content_list) {
+
+            val directions = HomeFragmentDirections.actionHomeFragmentToGamesByGenreFragment()
+            findNavController().navigate(directions)
+
             //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)
             //findNavController().navigate(directions)
         }
@@ -56,6 +62,8 @@ class HomeFragment : Fragment() {
         val mAdapter2 = HomeGamesAdapter(game_content_list) {
             //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)
             //findNavController().navigate(directions)
+            val directions = HomeFragmentDirections.actionHomeFragmentToGameDescriptionFragment()
+            findNavController().navigate(directions)
         }
 
         val mainRecyclerView: RecyclerView = binding.genreRecyclerView
@@ -63,9 +71,12 @@ class HomeFragment : Fragment() {
 
         mainRecyclerView.adapter = mAdapter
 
+
         val secundaryRecyclerView: RecyclerView = binding.gamesRecyclerView
         secundaryRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         secundaryRecyclerView.adapter = mAdapter2
+
+        }
+
     }
-}
