@@ -31,11 +31,11 @@ class BuzonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         var genre_content_list = listOf(genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Pepito"), genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Juanito"), genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Paquito")
             , genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Antonio V."), genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Pedro P."))
-        val mAdapter = HomeAdapter(genre_content_list) {
+        val mAdapter = BuzonAdapter(genre_content_list) {
             //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)
             //findNavController().navigate(directions)
         }
-        val mainRecyclerView: RecyclerView = binding.genreRecyclerView
+        val mainRecyclerView: RecyclerView = binding.chatsRecyclerView
         mainRecyclerView.layoutManager = GridLayoutManager(context, 1)
 
         mainRecyclerView.adapter = mAdapter
