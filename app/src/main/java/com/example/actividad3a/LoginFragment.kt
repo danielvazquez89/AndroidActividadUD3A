@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.actividad3a.databinding.FragmentLoginBinding
 import com.example.navigationcomponent.Validaciones
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -32,6 +34,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         binding.textViewIniciarSesion.setOnClickListener {
             binding.textFieldEmail.editText?.setText("email@gmail.com")
             binding.textFieldContrasena.editText?.setText("contraseña1234")

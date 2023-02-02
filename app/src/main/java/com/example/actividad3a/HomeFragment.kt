@@ -37,6 +37,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
         var bottomNav = activity?.findViewById(R.id.bottom_navigation) as BottomNavigationView
         bottomNav.isVisible = true
         var genre_content_list = listOf(genre_content("https://cdn-icons-png.flaticon.com/512/2790/2790402.png", "Aventura"), genre_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Acción"), genre_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "Arcade")

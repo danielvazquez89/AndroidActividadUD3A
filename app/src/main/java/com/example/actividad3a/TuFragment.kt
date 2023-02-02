@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.actividad3a.databinding.FragmentTuBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TuFragment : Fragment() {
     private var _binding: FragmentTuBinding? = null
@@ -30,9 +32,11 @@ class TuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
         binding.irAPerfilLayout.setOnClickListener {
             val directions = TuFragmentDirections.actionTuFragmentToPerfilFragment()
             findNavController().navigate(directions)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
     }
 }

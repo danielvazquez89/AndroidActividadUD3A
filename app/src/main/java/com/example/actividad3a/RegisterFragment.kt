@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.actividad3a.databinding.FragmentRegisterBinding
 import com.example.navigationcomponent.Validaciones
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -43,6 +45,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         binding.btRegistrarse.setOnClickListener {
             val objetoValidaciones = Validaciones()
             val emailValido = objetoValidaciones.esEmailValido(binding.textFieldEmail)
