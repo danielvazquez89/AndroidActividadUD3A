@@ -45,8 +45,8 @@ class HomeFragment : Fragment() {
         var genre_content_list = listOf(genre_content("https://cdn-icons-png.flaticon.com/512/2790/2790402.png", "Aventura"), genre_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Acción"), genre_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "Arcade")
         , genre_content("https://cdn1.iconfinder.com/data/icons/game-design-butterscotch-vol-2/256/Sports_Game-1024.png", "Deportes"), genre_content("https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg", "Estrategia"))
 
-        var game_content_list = listOf(game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Last of Us"), game_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Rayman 3"), game_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "NintenDogs")
-            , game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Wiisports"), game_content("https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg", "Loney"))
+        var game_content_list = listOf(game_content("https://m.media-amazon.com/images/I/815ng-+eeSL._AC_SL1500_.jpg", "Last of Us"), game_content("https://m.media-amazon.com/images/I/81Pagnfx1DL._SL1500_.jpg", "Rayman 3"), game_content("https://m.media-amazon.com/images/I/71ApMdd+7bL._SL1361_.jpg", "NintenDogs")
+            , game_content("https://m.media-amazon.com/images/I/81vJ+ekX1BL._AC_SL1500_.jpg", "Wiisports"), game_content("https://m.media-amazon.com/images/I/81RxV8YQdRL._SL1500_.jpg", "Loney"))
 
         datos = args.user
 
