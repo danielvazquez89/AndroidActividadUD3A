@@ -13,4 +13,11 @@
     <string name="nombre">Nombre</string>
     <string name="email">Email</string>
     <string name="fecha_nacimiento">Fecha nacimiento</string>
+    <string name="cameraOption">Camera</string>
+    <string name="compras">Compras</string>
+    <string name="transacciones">Transacciones</string>
+    <string name="ventas">Ventas</string>
+    <string name="configuracion">Configuracion</string>
+    <string name="monedero">Monedero</string>
+    <string name="ayuda">Ayuda</string>
 </resources>

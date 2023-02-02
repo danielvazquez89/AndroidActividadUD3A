@@ -38,7 +38,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         var bottomNav = activity?.findViewById(R.id.bottom_navigation) as BottomNavigationView
         bottomNav.isVisible = true
 

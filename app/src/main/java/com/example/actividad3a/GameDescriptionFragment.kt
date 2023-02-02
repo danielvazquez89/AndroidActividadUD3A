@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class GameDescriptionFragment : Fragment() {
 
@@ -21,7 +23,7 @@ class GameDescriptionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         val btAddGameToHome = view.findViewById<Button>(R.id.btAddGameToHome)
         btAddGameToHome.setOnClickListener {
             Log.i("Pepa", "ebtra ya")
