@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imagenJuego"
+            android:layout_width="340dp"
+            android:layout_height="340dp"
+            android:layout_marginTop="-80dp"
+            android:src="@drawable/lastofus" />
+
+        <TextView
+            android:id="@+id/miTextoJuego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="The Last of Us"
+            android:textAlignment="center"
+            android:textSize="38dp" />
+
+        <TextView
+            android:id="@+id/tvSeller"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:text="Juan Perez"
+            android:textAlignment="center"
+            android:textColor="#3455FB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/miDescripcionJuego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="An emotionally gripping story of love, hope, perseverance, and recovery. 20 years after a pandemic has radically changed known civilization, infected humans run wild and survivors are killing each other for food, weapons - whatever they can get their hands on."
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/btAddGameToHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/black"
+            android:text="Rent" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

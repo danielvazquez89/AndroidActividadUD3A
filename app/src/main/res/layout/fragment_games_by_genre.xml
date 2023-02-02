@@ -5,21 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeFragment"
-    >
+    tools:context=".HomeFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="30dp">
-    <androidx.appcompat.widget.SearchView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:queryHint="Buscar en Gamepop"
-        app:iconifiedByDefault="false"
-        android:background="@color/background"
-        />
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:queryHint="Buscar en Gamepop"
+            app:iconifiedByDefault="false"
+            android:background="@color/background"
+            />
     </androidx.cardview.widget.CardView>
     <View
         android:layout_width="match_parent"
@@ -30,41 +29,22 @@
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
+        android:layout_height="520dp"
+        android:orientation="vertical"
         android:layout_marginTop="20dp"
         >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/genreRecyclerView"
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_height="match_parent" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="406dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:text="Close to You"
-            android:textSize="20sp"
-            android:textColor="@color/black"
-            />
+            android:layout_height="wrap_content"
+            android:text="Find what you want"
+            android:textColor="@color/black"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gamesRecyclerView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:orientation="horizontal"
             android:layout_weight="1"
-            android:orientation="horizontal" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
