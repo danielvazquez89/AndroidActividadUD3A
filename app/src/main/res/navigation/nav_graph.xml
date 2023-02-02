@@ -81,5 +81,9 @@
         android:id="@+id/gameDescriptionFragment"
         android:name="com.example.actividad3a.GameDescriptionFragment"
         android:label="fragment_game_description"
-        tools:layout="@layout/fragment_game_description" />
+        tools:layout="@layout/fragment_game_description" >
+        <action
+            android:id="@+id/action_gameDescriptionFragment_to_tuFragment"
+            app:destination="@id/tuFragment" />
+    </fragment>
 </navigation>

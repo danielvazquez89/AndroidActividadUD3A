@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.actividad3a.databinding.FragmentFavouriteBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class FavouriteFragment : Fragment() {
     private var _binding: FragmentFavouriteBinding? = null
@@ -30,15 +31,29 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var genre_content_list = listOf(genre_content("https://cdn-icons-png.flaticon.com/512/2790/2790402.png", "Aventura"), genre_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Acción"), genre_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "Arcade")
-            , genre_content("https://cdn1.iconfinder.com/data/icons/game-design-butterscotch-vol-2/256/Sports_Game-1024.png", "Deportes"), genre_content("https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg", "Estrategia"))
-        val mAdapter = HomeAdapter(genre_content_list) {
-            //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)
-            //findNavController().navigate(directions)
-        }
-        val mainRecyclerView: RecyclerView = binding.genreRecyclerView
-        mainRecyclerView.layoutManager = GridLayoutManager(context, 2)
 
-        mainRecyclerView.adapter = mAdapter
+        var bottom_navigation = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        bottom_navigation.setOnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favouriteProductsFragment -> {
+                    goToFragment(favouriteProductsFragment())
+                    true
+                }
+                R.id.favouriteProfileFragment -> {
+                    goToFragment(favouriteProfileFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+        bottom_navigation.selectedItemId = R.id.favouriteProductsFragment
+        //fin botoners
+    }
+
+    fun goToFragment(fragment: Fragment) {
+        activity?.let{
+            it.supportFragmentManager.beginTransaction().replace(R.id.main_container, fragment).commit()
+        }
     }
 }
