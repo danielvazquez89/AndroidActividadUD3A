@@ -29,7 +29,7 @@
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="546dp"
+        android:layout_height="520dp"
         android:orientation="vertical"
         android:layout_marginTop="20dp"
         >

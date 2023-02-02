@@ -12,29 +12,35 @@
 
     <ImageView
         android:id="@+id/imagenJuego"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:src="@drawable/ic_baseline_mail_outline_24" />
+        android:layout_width="340dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="-80dp"
+        android:src="@drawable/lastofus" />
 
     <TextView
         android:id="@+id/miTextoJuego"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre Juego"
-        android:textSize="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="The Last of Us"
+        android:textSize="38dp"
         android:textAlignment="center" />
 
     <TextView
         android:id="@+id/miDescripcionJuego"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="blahwkdawdawdjwdawdjwdhwudhwaudhuwhduwhd2h23fuehfjfjwhfjahfajwfhajwh29238ehhr283hr328r3fd328hr23fh23f23"
+        android:text="An emotionally gripping story of love, hope, perseverance, and recovery. 20 years after a pandemic has radically changed known civilization, infected humans run wild and survivors are killing each other for food, weapons - whatever they can get their hands on."
         android:textAlignment="center" />
 
     <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/btAddGameTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      android:text="Add"
+        android:backgroundTint="@color/black"
+      android:text="Rent"
         />
 
   </LinearLayout>
