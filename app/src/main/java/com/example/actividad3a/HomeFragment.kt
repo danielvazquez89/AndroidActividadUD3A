@@ -38,6 +38,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if(Your condition){    //if it is true
+
+            img.setImageResource(R.drawable.my_first_image); //replace image
+
+        }else{
+
+            img.setImageResource(R.drawable.my_second_image);
+
+        }
+
         var bottomNav = activity?.findViewById(R.id.bottom_navigation) as BottomNavigationView
         bottomNav.isVisible = true
 
