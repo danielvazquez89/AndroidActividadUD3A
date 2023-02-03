@@ -38,5 +38,30 @@ class TuFragment : Fragment() {
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
+        binding.irACompras.setOnClickListener {
+            val directions = TuFragmentDirections.actionTuFragmentToComprasFragment()
+            findNavController().navigate(directions)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
+        }
+        binding.irAVentas.setOnClickListener {
+            val directions = TuFragmentDirections.actionTuFragmentToVentasFragment()
+            findNavController().navigate(directions)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
+        }
+        binding.irAMonedero.setOnClickListener {
+            val directions = TuFragmentDirections.actionTuFragmentToMonederoFragment()
+            findNavController().navigate(directions)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
+        }
+        binding.irAConfiguracion.setOnClickListener {
+            val directions = TuFragmentDirections.actionTuFragmentToConfiguracionFragment()
+            findNavController().navigate(directions)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
+        }
+        binding.irAAyuda.setOnClickListener {
+            val directions = TuFragmentDirections.actionTuFragmentToAyudaFragment()
+            findNavController().navigate(directions)
+            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
+        }
     }
 }
