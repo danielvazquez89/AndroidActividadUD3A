@@ -29,8 +29,8 @@ class UploadAdapter(private val mDataSet: List<genre_content>, var onClick: (gen
     }
 
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
-        val mytexto = v.findViewById<TextView>(R.id.miTextoUplaodGenero)
-        val miFoto = v.findViewById<ImageView>(R.id.imagenUploadGenero)
+        val mytexto = v.findViewById<TextView>(R.id.miTextoGenero)
+        val miFoto = v.findViewById<ImageView>(R.id.imagenGenero)
         fun bindItems(data: genre_content) {
             //mytexto.text = data
             mytexto.text = data.nombreGenero
