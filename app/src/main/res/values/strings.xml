@@ -20,4 +20,9 @@
     <string name="configuracion">Configuracion</string>
     <string name="monedero">Monedero</string>
     <string name="ayuda">Ayuda</string>
+    <string name="precio">Precio</string>
+    <string name="t_tulo_del_videojuego">Título del videojuego</string>
+    <string name="subir">Subir</string>
+    <string name="consola">Consola</string>
+    <string name="descripci_n">Descripción</string>
 </resources>

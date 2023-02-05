@@ -86,12 +86,20 @@
         android:id="@+id/uploadFragment"
         android:name="com.example.actividad3a.UploadFragment"
         android:label="fragment_upload"
-        tools:layout="@layout/fragment_upload" />
+        tools:layout="@layout/fragment_upload" >
+        <action
+            android:id="@+id/action_uploadFragment_to_uploadDetailsFragment"
+            app:destination="@id/uploadDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.example.actividad3a.PerfilFragment"
         android:label="fragment_perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_tuFragment"
+            app:destination="@id/tuFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gamesByGenreFragment"
         android:name="com.example.actividad3a.GamesByGenreFragment"
@@ -135,4 +143,16 @@
         android:name="com.example.actividad3a.AyudaFragment"
         android:label="fragment_ayuda"
         tools:layout="@layout/fragment_ayuda" />
+    <fragment
+        android:id="@+id/uploadDetailsFragment"
+        android:name="com.example.actividad3a.UploadDetailsFragment"
+        android:label="fragment_upload_details"
+        tools:layout="@layout/fragment_upload_details" >
+        <action
+            android:id="@+id/action_uploadDetailsFragment_to_uploadFragment"
+            app:destination="@id/uploadFragment" />
+        <argument
+            android:name="Genero"
+            app:argType="string" />
+    </fragment>
 </navigation>
