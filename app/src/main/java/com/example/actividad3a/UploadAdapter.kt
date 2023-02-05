@@ -1,7 +1,5 @@
 package com.example.actividad3a
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,14 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class UploadAdapter(
-    private val mDataSet: List<genre_content>,
-    var onClick: (genre_content) -> Unit
-) :
+class UploadAdapter(private val mDataSet: List<genre_content>, var onClick: (genre_content) -> Unit) :
     RecyclerView.Adapter<UploadAdapter.MainViewHolder>() {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.upload_list, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.genre_card, parent, false)
         return MainViewHolder(v)
     }
 
@@ -27,10 +21,6 @@ class UploadAdapter(
         data.let { holder.bindItems(it) }
         holder.itemView.setOnClickListener {
             onClick(data)
-            //if (data)
-            //  holder.mytexto.text = "\uFEFF\uD83D\uDCA5\uFEFF"
-            //else
-            //  holder.mytexto.text = "\uFEFF\uD83D\uDEA9\uFEFF "
         }
     }
 
