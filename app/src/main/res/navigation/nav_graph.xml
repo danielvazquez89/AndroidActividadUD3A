@@ -90,7 +90,11 @@
         android:id="@+id/uploadFragment"
         android:name="com.example.actividad3a.UploadFragment"
         android:label="fragment_upload"
-        tools:layout="@layout/fragment_upload" />
+        tools:layout="@layout/fragment_upload" >
+        <action
+            android:id="@+id/action_uploadFragment_to_uploadWithCategoryFragment"
+            app:destination="@id/uploadWithCategoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.example.actividad3a.PerfilFragment"
@@ -152,4 +156,9 @@
         android:name="com.example.actividad3a.PerfilUsuarioFragment"
         android:label="fragment_perfil_usuario"
         tools:layout="@layout/fragment_perfil_usuario" />
+    <fragment
+        android:id="@+id/uploadWithCategoryFragment"
+        android:name="com.example.actividad3a.UploadWithCategoryFragment"
+        android:label="fragment_upload_with_category"
+        tools:layout="@layout/fragment_upload_with_category" />
 </navigation>

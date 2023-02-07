@@ -51,3 +51,11 @@ data class venta_content(
 data class monedero_content(
     val textoDinero: String,
 )
+
+data class upload_with_category_content(
+    val foto: String,
+    val title: String,
+    val descripcion: String,
+    val category: String,
+    val precio: String,
+)
