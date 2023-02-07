@@ -160,5 +160,9 @@
         android:id="@+id/uploadWithCategoryFragment"
         android:name="com.example.actividad3a.UploadWithCategoryFragment"
         android:label="fragment_upload_with_category"
-        tools:layout="@layout/fragment_upload_with_category" />
+        tools:layout="@layout/fragment_upload_with_category" >
+        <action
+            android:id="@+id/action_uploadWithCategoryFragment_to_tuFragment"
+            app:destination="@id/tuFragment" />
+    </fragment>
 </navigation>

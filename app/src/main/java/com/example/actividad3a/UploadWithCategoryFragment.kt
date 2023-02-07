@@ -43,7 +43,7 @@ class UploadWithCategoryFragment : Fragment() {
 
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
 
-        var genre_content_list = listOf(upload_with_category_content("", "14 enero","Last of uS","Donde estas?","89"))
+        var genre_content_list = listOf(upload_with_category_content("", "Hamtaro","gran jeugo gran persona","Drama","89"))
 
 
         val mAdapter = UploadWithCategoryAdapter(genre_content_list) /*{
@@ -55,5 +55,12 @@ class UploadWithCategoryFragment : Fragment() {
         mainRecyclerView.layoutManager = GridLayoutManager(context, 1)
 
         mainRecyclerView.adapter = mAdapter
+
+        val btUploadtoHome = view.findViewById<Button>(R.id.btUploadtoHome)
+        btUploadtoHome.setOnClickListener {
+            Log.i("Pepa", "subido productoa")
+            val action = UploadWithCategoryFragmentDirections.actionUploadWithCategoryFragmentToTuFragment()
+            findNavController().navigate(action)
+        }
     }
 }
