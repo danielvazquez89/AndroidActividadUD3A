@@ -30,6 +30,7 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Registro")
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         setupActivityLink()

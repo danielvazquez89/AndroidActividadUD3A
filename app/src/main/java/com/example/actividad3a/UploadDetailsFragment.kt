@@ -12,14 +12,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
-import com.example.actividad3a.databinding.FragmentPerfilBinding
+import androidx.navigation.fragment.navArgs
+import com.example.actividad3a.databinding.FragmentUploadDetailsBinding
 import java.io.File
 
-class PerfilFragment : Fragment() {
-    private var _binding: FragmentPerfilBinding? = null
+class UploadDetailsFragment : Fragment() {
+    private var _binding: FragmentUploadDetailsBinding? = null
     private val binding get() = _binding!!
     private val REQUEST_CODE_PERMISSIONS = 1
     private val REQUIRE_CAMERA = arrayOf(
@@ -44,14 +46,13 @@ class PerfilFragment : Fragment() {
                 }
             }
         }
-
+    val args: UploadDetailsFragmentArgs by navArgs()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        setActivityTitle("Perfil")
-        _binding = FragmentPerfilBinding.inflate(inflater, container, false)
+        setActivityTitle("Subiendo en " + args.genero)
+        _binding = FragmentUploadDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -63,24 +64,29 @@ class PerfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        ivImage = binding.miImagenUsuario
-        /*findViewById<Button>(R.id.btCam).setOnClickListener {
-            startCamera()
+        ivImage = binding.miImagenJuego
+        binding.miBotonUpload.setOnClickListener {
+            if (binding.miPrecioJuego.text.toString() != "" && binding.miTituloJuego.text.toString() != "" && binding.miConsolaJuego.text.toString() != "" && binding.miDescripcionJuego.text.toString() != "") {
+                Toast.makeText(
+                    requireContext(), "Producto subido", Toast.LENGTH_SHORT
+                ).show()
+                val directions =
+                    UploadDetailsFragmentDirections.actionUploadDetailsFragmentToUploadFragment()
+                findNavController().navigate(directions)
+            } else {
+                Toast.makeText(
+                    requireContext(), "Rellene todos los campos por favor", Toast.LENGTH_SHORT
+                ).show()
+            }
         }
-        findViewById<Button>(R.id.btGal).setOnClickListener {
-            startGallery()
-        }
-        */
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Upload image")
-        builder.setMessage("Choose uploading image way")
+        builder.setTitle("Subir imagen")
+        builder.setMessage("Seleccione la forma en la que quiere subir su imagne")
 //builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
 
-        builder.setPositiveButton("Camera") { dialog, which ->
+        builder.setPositiveButton("Camara") { dialog, which ->
             Toast.makeText(
-                requireContext(),
-                "Camera", Toast.LENGTH_SHORT
+                requireContext(), "Camara", Toast.LENGTH_SHORT
             ).show()
             // Check permissions camera
             option = getString(R.string.cameraOption)
@@ -88,10 +94,9 @@ class PerfilFragment : Fragment() {
             startCamera()
         }
 
-        builder.setNegativeButton("Gallery") { dialog, which ->
+        builder.setNegativeButton("Galleria") { dialog, which ->
             Toast.makeText(
-                requireContext(),
-                "Gallery", Toast.LENGTH_SHORT
+                requireContext(), "Galleria", Toast.LENGTH_SHORT
             ).show()
             // Check permissions gallery
             option = "Gallery"
@@ -101,37 +106,12 @@ class PerfilFragment : Fragment() {
 
         builder.setNeutralButton(android.R.string.no) { dialog, which ->
             Toast.makeText(
-                requireContext(),
-                "Canceled", Toast.LENGTH_SHORT
+                requireContext(), "Canceled", Toast.LENGTH_SHORT
             ).show()
         }
 
-        binding.miEditFoto.setOnClickListener {
+        binding.miImagenJuego.setOnClickListener {
             builder.show()
-        }
-        val builderBorrarUsuario = AlertDialog.Builder(requireContext())
-        builderBorrarUsuario.setTitle("¿Estas seguro de que quieres borrar tu usuario?")
-        //builderBorrarUsuario.setMessage("Choose uploading image way")
-//builder.setPositiveButton("OK", DialogInterface.OnClickListener(function = x))
-
-        builderBorrarUsuario.setPositiveButton("Borrar") { dialog, which ->
-            Toast.makeText(
-                requireContext(),
-                "Borrar", Toast.LENGTH_SHORT
-            ).show()
-            val directions = PerfilFragmentDirections.actionPerfilFragmentToTuFragment()
-            findNavController().navigate(directions)
-        }
-
-        builderBorrarUsuario.setNegativeButton("Cancelar") { dialog, which ->
-            Toast.makeText(
-                requireContext(),
-                "Cancelar", Toast.LENGTH_SHORT
-            ).show()
-
-        }
-        binding.miBotonBorrarUsuario.setOnClickListener {
-            builderBorrarUsuario.show()
         }
     }
 
@@ -145,15 +125,13 @@ class PerfilFragment : Fragment() {
 
     fun permissionGalleryGranted(): Boolean = REQUIRE_GALLERY.all {
         ActivityCompat.checkSelfPermission(
-            requireContext(),
-            it
+            requireContext(), it
         ) == PackageManager.PERMISSION_GRANTED
     }
 
     fun permissionCameraGranted(): Boolean = REQUIRE_CAMERA.all {
         ActivityCompat.checkSelfPermission(
-            requireContext(),
-            it
+            requireContext(), it
         ) == PackageManager.PERMISSION_GRANTED
     }
 
@@ -179,9 +157,12 @@ class PerfilFragment : Fragment() {
                 deleteOnExit()
             }
         return FileProvider.getUriForFile(
-            requireContext(),
-            "${BuildConfig.APPLICATION_ID}.provider",
-            tmpFile
+            requireContext(), "${BuildConfig.APPLICATION_ID}.provider", tmpFile
         )
     }
 }
+
+fun Fragment.setActivityTitle(title: String) {
+    (activity as AppCompatActivity?)?.supportActionBar?.title = title
+}
+
