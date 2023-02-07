@@ -21,6 +21,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Log In")
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val view = binding.root
         setupActivityLink()

@@ -20,6 +20,7 @@ class TuFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Tu")
         _binding = FragmentTuBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

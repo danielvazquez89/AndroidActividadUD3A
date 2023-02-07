@@ -50,6 +50,7 @@ class PerfilFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Perfil")
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

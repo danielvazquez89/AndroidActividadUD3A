@@ -25,6 +25,7 @@ class GamesByGenreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Juegos por género")
         _binding = FragmentGamesByGenreBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

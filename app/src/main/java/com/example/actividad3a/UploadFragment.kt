@@ -21,6 +21,7 @@ class UploadFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Subir")
         _binding = FragmentUploadBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

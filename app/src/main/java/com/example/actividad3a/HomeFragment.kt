@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        setActivityTitle("Home")
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
