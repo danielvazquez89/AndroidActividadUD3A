@@ -46,6 +46,7 @@ class UploadDetailsFragment : Fragment() {
                 }
             }
         }
+
     val args: UploadDetailsFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
