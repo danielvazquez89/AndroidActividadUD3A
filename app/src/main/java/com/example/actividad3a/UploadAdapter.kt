@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class UploadAdapter(private val mDataSet: List<genre_content>, var onClick: (genre_content) -> Unit) :
+class UploadAdapter(private val mDataSet: ArrayList<GenerosResponse.GenerosResponseItem>, var onClick: (GenerosResponse.GenerosResponseItem) -> Unit) :
     RecyclerView.Adapter<UploadAdapter.MainViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.genre_card, parent, false)
@@ -31,10 +31,10 @@ class UploadAdapter(private val mDataSet: List<genre_content>, var onClick: (gen
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
         val mytexto = v.findViewById<TextView>(R.id.miTextoGenero)
         val miFoto = v.findViewById<ImageView>(R.id.imagenGenero)
-        fun bindItems(data: genre_content) {
+        fun bindItems(data: GenerosResponse.GenerosResponseItem) {
             //mytexto.text = data
-            mytexto.text = data.nombreGenero
-            Glide.with(miFoto.context).load(data.fotoGenero).into(miFoto)
+            mytexto.text = data.tipoGenero
+            Glide.with(miFoto.context).load(data.urlImagen).into(miFoto)
         }
     }
 }
