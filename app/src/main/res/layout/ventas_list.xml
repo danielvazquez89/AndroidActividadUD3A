@@ -19,7 +19,7 @@
             app:cardCornerRadius="10dp">
 
             <ImageView
-                android:id="@+id/miImagenJuego"
+                android:id="@+id/miImagenVentaJuego"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@color/purple_500" />
@@ -32,14 +32,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/miFechaReceptor"
+                android:id="@+id/UsuarioVendedor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre persona"
                 android:textAlignment="center" />
 
             <TextView
-                android:id="@+id/miNombreJuegoChat"
+                android:id="@+id/miNombreJuegoVenta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre juego"
@@ -48,14 +48,20 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/miMensajePreview"
+                android:id="@+id/fechaVenta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre persona"
                 android:textAlignment="center" />
 
-        </LinearLayout>
 
+        </LinearLayout>
+        <TextView
+            android:id="@+id/precioVenta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20€"
+            android:textAlignment="center" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class BuzonAdapter(private val mDataSet: List<genre_content>, var onClick: (genre_content) -> Unit) :
+class BuzonAdapter(private val mDataSet: List<chat_content>, var onClick: (chat_content) -> Unit) :
     RecyclerView.Adapter<BuzonAdapter.MainViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.mesage_list, parent, false)
@@ -32,13 +32,17 @@ class BuzonAdapter(private val mDataSet: List<genre_content>, var onClick: (genr
     }
 
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
-        val miNombreReceptor = v.findViewById<TextView>(R.id.miNombreReceptor)
-        val miMensaje = v.findViewById<TextView>(R.id.miMensajePreview)
         val miFotoJuego = v.findViewById<ImageView>(R.id.miImagenJuego)
-        fun bindItems(data: genre_content) {
-            //mytexto.text = data
-            miNombreReceptor.text = data.nombreGenero
-            Glide.with(miFotoJuego.context).load(data.fotoGenero).into(miFotoJuego)
+        val miFechaMensaje = v.findViewById<TextView>(R.id.miFechaReceptor)
+        val miNombreoJuego = v.findViewById<TextView>(R.id.miNombreJuegoChat)
+        val miNombreReceptor = v.findViewById<TextView>(R.id.miMensajePreview)
+
+        fun bindItems(data: chat_content) {
+            Glide.with(miFotoJuego.context).load(data.fotoJuego).into(miFotoJuego)
+            miFechaMensaje.text = data.fechaChat
+            miNombreoJuego.text = data.nombreProducto
+            miNombreReceptor.text = data.previewMensaje
+
         }
     }
 }

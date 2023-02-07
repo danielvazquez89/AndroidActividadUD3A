@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,12 +33,14 @@ class BuzonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
-        var genre_content_list = listOf(genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Pepito"), genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Juanito"), genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Paquito")
-            , genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Antonio V."), genre_content("https://e7.pngegg.com/pngimages/807/26/png-clipart-envelope-mail-icon-envelope-miscellaneous-angle.png", "Pedro P."))
+
+        var genre_content_list = listOf(chat_content("", "14 enero","Last of uS","Donde estas?"))
+
         val mAdapter = BuzonAdapter(genre_content_list) {
-            //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)
-            //findNavController().navigate(directions)
+            val directions = BuzonFragmentDirections.actionBuzonFragmentToMensajesFragment()
+            findNavController().navigate(directions)
         }
+
         val mainRecyclerView: RecyclerView = binding.chatsRecyclerView
         mainRecyclerView.layoutManager = GridLayoutManager(context, 1)
 

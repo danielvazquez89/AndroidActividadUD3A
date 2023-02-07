@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onClick: (user_content) -> Unit) :
-    RecyclerView.Adapter<FavoriteProfileAdapter.MainViewHolder>() {
+class MensajesAdapter (private val mDataSet: List<message_content>) :
+    RecyclerView.Adapter<MensajesAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.favorite_profile_list, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.mensaje_list, parent, false)
         return MainViewHolder(v)
     }
 
@@ -23,11 +23,6 @@ class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onCl
         val data = mDataSet.get(position)
         data.let { holder.bindItems(it) }
         holder.itemView.setOnClickListener {
-            onClick(data)
-            //if (data)
-            //  holder.mytexto.text = "\uFEFF\uD83D\uDCA5\uFEFF"
-            //else
-            //  holder.mytexto.text = "\uFEFF\uD83D\uDEA9\uFEFF "
         }
     }
 
@@ -36,11 +31,15 @@ class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onCl
     }
 
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
-        val mytexto = v.findViewById<TextView>(R.id.miNombreUsuario)
-        val miFoto = v.findViewById<ImageView>(R.id.imagenUsuario)
-        fun bindItems(data: user_content) {
-            //mytexto.text = data
-            mytexto.text = data.nombreUsuario
-            Glide.with(miFoto.context).load(data.fotoUsuario).into(miFoto)
+        val tvHoraMensajeEnviado = v.findViewById<TextView>(R.id.tvMensajePorUsario)
+        val tvMensajePorUsario = v.findViewById<TextView>(R.id.tvHoraMensajeEnviado)
+
+
+        fun bindItems(data: message_content) {
+
+            tvHoraMensajeEnviado.text = data.fechaMensaje
+            tvMensajePorUsario.text = data.textoMensaje
+
         }
-    } }
+    }
+}

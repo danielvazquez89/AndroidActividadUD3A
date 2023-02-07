@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onClick: (user_content) -> Unit) :
-    RecyclerView.Adapter<FavoriteProfileAdapter.MainViewHolder>() {
+class MonederoAdapter (private val mDataSet: List<monedero_content>) :
+    RecyclerView.Adapter<MonederoAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.favorite_profile_list, parent, false)
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.monedero_list, parent, false)
         return MainViewHolder(v)
     }
 
@@ -23,11 +23,6 @@ class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onCl
         val data = mDataSet.get(position)
         data.let { holder.bindItems(it) }
         holder.itemView.setOnClickListener {
-            onClick(data)
-            //if (data)
-            //  holder.mytexto.text = "\uFEFF\uD83D\uDCA5\uFEFF"
-            //else
-            //  holder.mytexto.text = "\uFEFF\uD83D\uDEA9\uFEFF "
         }
     }
 
@@ -36,11 +31,11 @@ class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onCl
     }
 
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
-        val mytexto = v.findViewById<TextView>(R.id.miNombreUsuario)
-        val miFoto = v.findViewById<ImageView>(R.id.imagenUsuario)
-        fun bindItems(data: user_content) {
-            //mytexto.text = data
-            mytexto.text = data.nombreUsuario
-            Glide.with(miFoto.context).load(data.fotoUsuario).into(miFoto)
+        val miTextoMonedero = v.findViewById<TextView>(R.id.miTextoMonedero)
+
+        fun bindItems(data: monedero_content) {
+            miTextoMonedero.text = data.textoDinero
+
         }
-    } }
+    }
+}

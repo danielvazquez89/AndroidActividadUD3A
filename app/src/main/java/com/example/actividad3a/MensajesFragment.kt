@@ -6,16 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.actividad3a.databinding.FragmentBuzonBinding
-import com.example.actividad3a.databinding.FragmentMonederoBinding
-import com.example.actividad3a.databinding.FragmentVentasBinding
+import com.example.actividad3a.databinding.FragmentMensajesBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MonederoFragment : Fragment() {
+class MensajesFragment : Fragment() {
 
-    private var _binding: FragmentMonederoBinding? = null
+    private var _binding: FragmentMensajesBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -23,7 +23,7 @@ class MonederoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentMonederoBinding.inflate(inflater, container, false)
+        _binding = FragmentMensajesBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -38,14 +38,14 @@ class MonederoFragment : Fragment() {
 
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
 
-        var genre_content_list = listOf(monedero_content("2€"))
+        var genre_content_list = listOf(message_content(" 13:40","donde podriamos quedar??"))
 
-        val mAdapter = MonederoAdapter(genre_content_list) /*{
+        val mAdapter = MensajesAdapter(genre_content_list) /*{
           //  val directions = BuzonFragmentDirections.actionBuzonFragmentToMensajesFragment()
             //findNavController().navigate(directions)
         }*/
 
-        val mainRecyclerView: RecyclerView = binding.monederoRecyclerView
+        val mainRecyclerView: RecyclerView = binding.mensajesRecyclerView
         mainRecyclerView.layoutManager = GridLayoutManager(context, 1)
 
         mainRecyclerView.adapter = mAdapter
