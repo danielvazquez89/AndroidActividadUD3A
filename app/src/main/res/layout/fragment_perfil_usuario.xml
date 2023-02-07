@@ -172,32 +172,6 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_baseline_forward_to_inbox_24" />
-
-                <TextView
-                    android:id="@+id/miNumeroEnviosUsuario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:text="8"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:text="Envios" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="8dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
                     android:src="@drawable/ic_outline_location_on_24" />
 
                 <TextView
