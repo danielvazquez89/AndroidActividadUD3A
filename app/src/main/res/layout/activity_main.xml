@@ -23,14 +23,19 @@
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:layout_above="@+id/bottom_navigation"
-            android:background="@color/purple_200"></View>
+           ></View>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom" />
+            app:menu="@menu/bottom"
+            app:itemTextColor="@color/black"
+            app:itemRippleColor="#36DFE4"
+            android:outlineAmbientShadowColor="#36DFE4"
+            android:outlineSpotShadowColor="#36DFE4"
+            />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

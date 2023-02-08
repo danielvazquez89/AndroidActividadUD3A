@@ -5,7 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiRest {
     lateinit var service: ApiService
-    val URL = "http://212.0.109.168/"
+    //tu ip + 8080
+    val URL = "http://10.1.200.18:8080/"
     val URL_IMAGES = "https://image.tmdb.org/t/p/w500"
     fun initService() {
         val retrofit = Retrofit.Builder()

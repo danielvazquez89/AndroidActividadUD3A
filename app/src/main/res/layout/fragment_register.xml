@@ -159,7 +159,8 @@
         app:cornerRadius="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#36DFE4"/>
 
     <TextView
         android:id="@+id/iniciarSesion"
