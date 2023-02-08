@@ -38,7 +38,7 @@ class MonederoFragment : Fragment() {
 
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
 
-        var genre_content_list = listOf(monedero_content("2€"))
+        var genre_content_list = listOf(monedero_content("2"))
 
         val mAdapter = MonederoAdapter(genre_content_list) /*{
           //  val directions = BuzonFragmentDirections.actionBuzonFragmentToMensajesFragment()

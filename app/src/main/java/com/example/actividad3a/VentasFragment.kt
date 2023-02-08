@@ -37,7 +37,7 @@ class VentasFragment : Fragment() {
 
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
 
-        var genre_content_list = listOf(venta_content("","last of you","Juan","22 diciembre","30€"))
+        var genre_content_list = listOf(venta_content("","last of you","Juan","22 diciembre","30"))
 
         val mAdapter = VentasAdapter(genre_content_list) /*{
           //  val directions = BuzonFragmentDirections.actionBuzonFragmentToMensajesFragment()

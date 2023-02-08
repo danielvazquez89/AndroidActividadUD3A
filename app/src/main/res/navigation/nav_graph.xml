@@ -92,7 +92,7 @@
         android:label="fragment_upload"
         tools:layout="@layout/fragment_upload" >
         <action
-            android:id="@+id/action_uploadFragment_to_uploadDetailsFragment3"
+            android:id="@+id/action_uploadFragment_to_uploadDetailsFragment"
             app:destination="@id/uploadDetailsFragment" />
     </fragment>
     <fragment

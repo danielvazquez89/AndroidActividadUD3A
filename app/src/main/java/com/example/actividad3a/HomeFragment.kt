@@ -42,6 +42,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
 /*  val btnHeart = view.findViewById<ImageView>(R.id.corazon)
         btnHeart.setOnClickListener {
             btnHeart.setImageResource(R.drawable.ic_baseline_favorite_24); //replace image

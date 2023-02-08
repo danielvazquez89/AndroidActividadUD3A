@@ -17,6 +17,7 @@
         android:textAlignment="center"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -81,6 +82,7 @@
         android:text="Inciar sesion"
         android:textAllCaps="false"
         app:cornerRadius="18dp"
+       android:backgroundTint="#36DFE4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

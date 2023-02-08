@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="100dp"
     android:padding="10dp">
 
     <LinearLayout
@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:padding="5dp"
+        android:layout_margin="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="70dp"
@@ -22,21 +23,22 @@
                 android:id="@+id/miImagenVentaJuego"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/purple_500" />
+                android:src="#36DFE4" />
 
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/UsuarioVendedor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre persona"
-                android:textAlignment="center" />
+                android:text="Monica Naranjo"
+                android:textColor="@color/black"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/miNombreJuegoVenta"
@@ -45,23 +47,39 @@
                 android:text="Nombre juego"
                 android:textAlignment="center"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/fechaVenta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre persona"
+                android:text="24 Diciembre"
                 android:textAlignment="center" />
 
 
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/precioVenta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20€"
-            android:textAlignment="center" />
+            android:text="20"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="€"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+    </LinearLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
