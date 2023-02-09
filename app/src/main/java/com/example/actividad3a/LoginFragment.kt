@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import com.example.actividad3a.data.models.UserRequest
 import com.example.actividad3a.databinding.FragmentLoginBinding
 import com.example.navigationcomponent.Validaciones
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -50,7 +51,7 @@ class LoginFragment : Fragment() {
                 //Iniciar sesion
                 val email = binding.textFieldEmail.editText?.text.toString()
                 //val contrasena = binding.textFieldContrasena.editText?.text.toString()
-                val user = RegisterFragment.User("", email, "", "")
+                val user = UserRequest("", email, "", "", "", "", "", "", null, null)
                 val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(user)
                 findNavController().navigate(action)
             }

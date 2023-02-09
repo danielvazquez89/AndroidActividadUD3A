@@ -13,5 +13,7 @@ data class UserRequest(
     @SerializedName("fecha_nacimiento")
     val fechaNacimiento: String,
     val mail: String,
-    val nombre: String
-)
+    val nombre: String,
+    val id_usuario: Int?,
+    val saldo_monedero: Double?
+): java.io.Serializable

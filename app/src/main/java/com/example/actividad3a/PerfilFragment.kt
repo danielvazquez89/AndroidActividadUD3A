@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +16,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
+import com.example.actividad3a.data.models.UserRequest
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentPerfilBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 
 class PerfilFragment : Fragment() {
     private var _binding: FragmentPerfilBinding? = null
     private val binding get() = _binding!!
     private val REQUEST_CODE_PERMISSIONS = 1
+    val TAG = "Perfil"
     private val REQUIRE_CAMERA = arrayOf(
         Manifest.permission.CAMERA
     )
@@ -50,7 +57,7 @@ class PerfilFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        setActivityTitle("Perfil")
+        setActivityTitle(TAG)
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -119,6 +126,7 @@ class PerfilFragment : Fragment() {
                 requireContext(),
                 "Borrar", Toast.LENGTH_SHORT
             ).show()
+            deleteUser(9421)
             val directions = PerfilFragmentDirections.actionPerfilFragmentToTuFragment()
             findNavController().navigate(directions)
         }
@@ -183,5 +191,27 @@ class PerfilFragment : Fragment() {
             "${BuildConfig.APPLICATION_ID}.provider",
             tmpFile
         )
+    }
+    private fun deleteUser(user: Int) {
+
+        val call = ApiRest.service.deleteUser(user)
+        call.enqueue(object : Callback<UserRequest> {
+            override fun onResponse(
+                call: Call<UserRequest>,
+                response: Response<UserRequest>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<UserRequest>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
     }
 }

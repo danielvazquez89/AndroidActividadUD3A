@@ -14,6 +14,14 @@ interface ApiService {
     @GET("juegos")
     fun getJuegos(): Call<JuegosResponse>
 
+    @GET("juegos_favoritos")
+    fun getJuegosFavoritos(): Call<JuegosResponse>
+
+    @GET("juegos/genero/{genero}")
+    fun getJuegosByGenre(
+        @Path(value = "genero", encoded = false) key: String
+    ): Call<JuegosResponse>
+
     @GET("users")
     fun getUsers(): Call<UsersResponse>
 
@@ -23,8 +31,11 @@ interface ApiService {
     ): Call<UsersResponse.UsersResponseItem>
 
     @Headers("Content-Type: application/json")
-    @POST("users")
+    @POST("users/")
     fun addUser(@Body userData: UserRequest): Call<UserRequest>
+
+    @DELETE("users/")
+    fun deleteUser(@Body userData: Int): Call<UserRequest>
 /*
     @GET("discover/movie")
     fun getMoviesByGenre(

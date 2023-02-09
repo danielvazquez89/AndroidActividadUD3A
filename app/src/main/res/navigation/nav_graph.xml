@@ -40,7 +40,7 @@
         tools:layout="@layout/fragment_home" >
         <argument
             android:name="user"
-            app:argType="com.example.actividad3a.RegisterFragment$User" />
+            app:argType="com.example.actividad3a.data.models.UserRequest" />
         <action
             android:id="@+id/action_homeFragment_to_gamesByGenreFragment"
             app:destination="@id/gamesByGenreFragment" />
@@ -112,6 +112,9 @@
         <action
             android:id="@+id/action_gamesByGenreFragment_to_gameDescriptionFragment"
             app:destination="@id/gameDescriptionFragment" />
+        <argument
+            android:name="genero"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/gameDescriptionFragment"

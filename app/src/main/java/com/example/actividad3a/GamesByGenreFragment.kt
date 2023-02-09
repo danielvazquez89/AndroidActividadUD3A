@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.actividad3a.data.models.GenerosResponse
 import com.example.actividad3a.databinding.FragmentGamesByGenreBinding
 import com.example.actividad3a.data.models.JuegosResponse
 import com.example.actividad3a.data.remotes.ApiRest
@@ -19,7 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GamesByGenreFragment : Fragment() {
-
+    val args: GamesByGenreFragmentArgs by navArgs()
     private var _binding: FragmentGamesByGenreBinding? = null
     private val binding get() = _binding!!
     val TAG = "Juegos por género"
@@ -46,7 +48,7 @@ class GamesByGenreFragment : Fragment() {
             , game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Wiisports"), game_content("https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg", "Loney")
        )
 
-        getJuegosPorGenero()
+        getJuegosPorGenero(args.genero)
 
         adapterJuegos = GamesByGenreAdapter(dataJuegos) {
             val directions = GamesByGenreFragmentDirections.actionGamesByGenreFragmentToGameDescriptionFragment(it)
@@ -60,8 +62,8 @@ class GamesByGenreFragment : Fragment() {
 
     }
 
-    private fun getJuegosPorGenero() {
-        val call = ApiRest.service.getJuegos()
+    private fun getJuegosPorGenero(genero: String) {
+        val call = ApiRest.service.getJuegosByGenre(genero)
         call.enqueue(object : Callback<JuegosResponse> {
             override fun onResponse(
                 call: Call<JuegosResponse>,

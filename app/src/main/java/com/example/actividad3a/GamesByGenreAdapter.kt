@@ -1,5 +1,6 @@
 package com.example.actividad3a
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.remotes.ApiRest
 
 
 class GamesByGenreAdapter(private val mDataSet: ArrayList<JuegosResponse.JuegosResponseItem>, var onClick: (JuegosResponse.JuegosResponseItem) -> Unit) :

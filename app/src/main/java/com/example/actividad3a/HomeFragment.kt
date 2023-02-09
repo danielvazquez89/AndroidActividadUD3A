@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.actividad3a.data.models.GenerosResponse
 import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.models.UserRequest
 import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -24,7 +25,7 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
     val args: com.example.actividad3a.HomeFragmentArgs by navArgs()
-    var datos: RegisterFragment.User? = null
+    var datos: UserRequest? = null
     private var _binding: FragmentHomeBinding? = null
     val TAG = "HomeFragment"
     private var adapterGeneros: HomeAdapter? = null
@@ -105,7 +106,7 @@ class HomeFragment : Fragment() {
 
         adapterGeneros = HomeAdapter(dataGeneros) {
 
-            val directions = HomeFragmentDirections.actionHomeFragmentToGamesByGenreFragment()
+            val directions = HomeFragmentDirections.actionHomeFragmentToGamesByGenreFragment(it.tipoGenero)
             findNavController().navigate(directions)
 
             //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)

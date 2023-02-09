@@ -9,6 +9,8 @@ import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentFavouriteProfileBinding
 import com.example.actividad3a.databinding.FragmentGamesByGenreBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -48,5 +50,7 @@ class favouriteProfileFragment : Fragment() {
         mainRecyclerView.adapter = mAdapter
 
     }
+
+
 
 }

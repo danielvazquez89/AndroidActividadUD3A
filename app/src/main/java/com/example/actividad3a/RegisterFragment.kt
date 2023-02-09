@@ -12,12 +12,15 @@ import android.widget.EditText
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.actividad3a.data.models.JuegosResponse
 import com.example.actividad3a.data.models.UserRequest
-import com.example.actividad3a.data.remotes.ApiManager
 import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentRegisterBinding
 import com.example.navigationcomponent.Validaciones
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,7 +30,7 @@ class RegisterFragment : Fragment() {
     //val args: RegisterFragmentArgs by navArgs()
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
-
+    val TAG = "Registro"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +40,7 @@ class RegisterFragment : Fragment() {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         val view = binding.root
         setupActivityLink()
+        setActivityTitle(TAG)
         binding.textFechaNacimiento.transformIntoDatePicker(requireContext(), "MM/dd/yyyy")
         binding.textFechaNacimiento.transformIntoDatePicker(requireContext(), "MM/dd/yyyy", Date())
         return view
@@ -77,11 +81,11 @@ class RegisterFragment : Fragment() {
                 val contrasena = binding.textFieldContrasena.editText?.text.toString()
                 val fechaNacimiento = binding.textFieldFechaNacimiento.editText?.text.toString()
                 //val user = User(nombre,email,apellidos,fechaNacimiento)
-                val user = UserRequest(apellidos, "ciudad", "12345", contrasena, "direccion", fechaNacimiento, email, nombre)
+                val user = UserRequest(apellidos, "ciudad", "12345", contrasena, "direccion", fechaNacimiento, email, nombre, null, null)
                 ApiRest.initService()
                 postUser(user)
-                //val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
-                //findNavController().navigate(action)
+                val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
+                findNavController().navigate(action)
             }
         }
     }
@@ -93,7 +97,6 @@ class RegisterFragment : Fragment() {
             findNavController().navigate( com.example.actividad3a.R.id.action_registerFragment_to_loginFragment)
         }
     }
-    data class User(val name: String, val email: String, val apellidos: String, val fecha: String) : Serializable
 
     fun EditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
         isFocusableInTouchMode = false
@@ -123,15 +126,26 @@ class RegisterFragment : Fragment() {
     }
 
     private fun postUser(user: UserRequest) {
-        val apiService = ApiManager()
-        apiService.addUser(user) {
-            if (it?.apellidos != null) {
-                // it = newly added user parsed as response
-                // it?.id = newly added user ID
-            } else {
-                Log.d("Hola","Error registering new user")
+
+        val call = ApiRest.service.addUser(user)
+        call.enqueue(object : Callback<UserRequest> {
+            override fun onResponse(
+                call: Call<UserRequest>,
+                response: Response<UserRequest>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
             }
-        }
+
+            override fun onFailure(call: Call<UserRequest>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
     }
 
 }
