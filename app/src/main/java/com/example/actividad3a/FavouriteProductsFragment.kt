@@ -1,18 +1,30 @@
 package com.example.actividad3a
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.actividad3a.data.models.GenerosResponse
+import com.example.actividad3a.data.models.JuegosFavoritosResponse
+import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentFavouriteProductsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class favouriteProductsFragment : Fragment() {
 
     private var _binding: FragmentFavouriteProductsBinding? = null
     private val binding get() = _binding!!
+    val TAG = "Favourite Products"
+    private var adapterJuegos: FavoriteGameAdapter? = null
+    var dataJuegos: ArrayList<JuegosResponse.JuegosResponseItem> = ArrayList()
+    var dataJuegosFavoritosUsuario: ArrayList<JuegosFavoritosResponse.JuegosFavoritosResponseItem> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,15 +46,66 @@ class favouriteProductsFragment : Fragment() {
         )
 
 
-        val mAdapter = FavoriteGameAdapter(game_favorite_content_list) {
+        adapterJuegos = FavoriteGameAdapter(dataJuegos) {
 
         }
 
         val mainRecyclerView: RecyclerView = binding.favoriteGamesRecyclerView
         mainRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        mainRecyclerView.adapter = mAdapter
+        mainRecyclerView.adapter = adapterJuegos
 
+    }
+    private fun getJuegosFavoritosByUserId(id: Int) {
+        val call = ApiRest.service.getJuegosFavoritosById(id)
+        call.enqueue(object : Callback<JuegosFavoritosResponse> {
+            override fun onResponse(
+                call: Call<JuegosFavoritosResponse>,
+                response: Response<JuegosFavoritosResponse>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+                    dataJuegosFavoritosUsuario.clear()
+                    dataJuegosFavoritosUsuario.addAll(body)
+                    // Get juegos by id aquí
+
+
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<JuegosFavoritosResponse>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
+    }
+
+
+    private fun getJuegoById(id: Int) {
+        val call = ApiRest.service.getJuegoById(id)
+        call.enqueue(object : Callback<JuegosResponse.JuegosResponseItem> {
+            override fun onResponse(
+                call: Call<JuegosResponse.JuegosResponseItem>,
+                response: Response<JuegosResponse.JuegosResponseItem>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+                    dataJuegos.add(body)
+                    adapterJuegos?.notifyDataSetChanged()
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<JuegosResponse.JuegosResponseItem>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
     }
 
 

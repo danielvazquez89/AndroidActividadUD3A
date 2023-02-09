@@ -1,9 +1,6 @@
 package com.example.actividad3a.data.remotes
 
-import com.example.actividad3a.data.models.UserRequest
-import com.example.actividad3a.data.models.GenerosResponse
-import com.example.actividad3a.data.models.JuegosResponse
-import com.example.actividad3a.data.models.UsersResponse
+import com.example.actividad3a.data.models.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -14,8 +11,15 @@ interface ApiService {
     @GET("juegos")
     fun getJuegos(): Call<JuegosResponse>
 
-    @GET("juegos_favoritos")
-    fun getJuegosFavoritos(): Call<JuegosResponse>
+    @GET("juegos/{id}")
+    fun getJuegoById(
+        @Path(value = "id", encoded = false) key: Int
+    ): Call<JuegosResponse.JuegosResponseItem>
+
+    @GET("juegos_favoritos/{id}")
+    fun getJuegosFavoritosById(
+        @Path(value = "id", encoded = false) key: Int
+    ): Call<JuegosFavoritosResponse>
 
     @GET("juegos/genero/{genero}")
     fun getJuegosByGenre(
