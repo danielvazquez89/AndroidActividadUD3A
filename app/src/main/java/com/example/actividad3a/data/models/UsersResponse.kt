@@ -1,4 +1,4 @@
-package com.example.actividad3a
+package com.example.actividad3a.data.models
 
 
 import com.google.gson.annotations.SerializedName
@@ -14,10 +14,10 @@ class UsersResponse : ArrayList<UsersResponse.UsersResponseItem>(){
         @SerializedName("fecha_nacimiento")
         val fechaNacimiento: String,
         @SerializedName("id_usuario")
-        val idUsuario: Int,
+        val idUsuario: Int?,
         val mail: String,
         val nombre: String,
         @SerializedName("saldo_monedero")
-        val saldoMonedero: Double
+        val saldoMonedero: Double?
     )
 }

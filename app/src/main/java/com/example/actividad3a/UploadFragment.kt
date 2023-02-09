@@ -1,17 +1,18 @@
 package com.example.actividad3a
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.actividad3a.data.models.GenerosResponse
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentUploadBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import retrofit2.Call
@@ -56,7 +57,6 @@ class UploadFragment : Fragment() {
         val mLayoutManager = GridLayoutManager(context, 2)
         rvGeneros.layoutManager = mLayoutManager
 
-        ApiRest.initService()
         getGeneros()
 
         //Creamos el adapter y lo vinculamos con el recycler

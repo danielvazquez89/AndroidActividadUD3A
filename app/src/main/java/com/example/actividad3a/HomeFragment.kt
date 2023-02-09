@@ -1,12 +1,10 @@
 package com.example.actividad3a
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,14 +12,25 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.actividad3a.data.models.GenerosResponse
+import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
-    val args: HomeFragmentArgs by navArgs()
+    val args: com.example.actividad3a.HomeFragmentArgs by navArgs()
     var datos: RegisterFragment.User? = null
     private var _binding: FragmentHomeBinding? = null
+    val TAG = "HomeFragment"
+    private var adapterGeneros: HomeAdapter? = null
+    private var adapterJuegos: HomeGamesAdapter? = null
+    var dataGeneros: ArrayList<GenerosResponse.GenerosResponseItem> = ArrayList()
+    var dataJuegos: ArrayList<JuegosResponse.JuegosResponseItem> = ArrayList()
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +63,7 @@ class HomeFragment : Fragment() {
 
         var bottomNav = activity?.findViewById(R.id.bottom_navigation) as BottomNavigationView
         bottomNav.isVisible = true
-
+/*
         var genre_content_list = listOf(
             genre_content("https://cdn-icons-png.flaticon.com/512/2790/2790402.png", "Aventura"),
             genre_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Acción"),
@@ -88,10 +97,13 @@ class HomeFragment : Fragment() {
             ),
             game_content("https://m.media-amazon.com/images/I/81RxV8YQdRL._SL1500_.jpg", "Loney")
         )
+        */
 
         datos = args.user
 
-        val mAdapter = HomeAdapter(genre_content_list) {
+        getGeneros()
+
+        adapterGeneros = HomeAdapter(dataGeneros) {
 
             val directions = HomeFragmentDirections.actionHomeFragmentToGamesByGenreFragment()
             findNavController().navigate(directions)
@@ -100,10 +112,12 @@ class HomeFragment : Fragment() {
             //findNavController().navigate(directions)
         }
 
-        val mAdapter2 = HomeGamesAdapter(game_content_list) {
+        getJuegos()
+
+        adapterJuegos = HomeGamesAdapter(dataJuegos) {
             //val directions = HomeFragment.actionBuscarFragmentToCancionesFragment(it)
             //findNavController().navigate(directions)
-            val directions = HomeFragmentDirections.actionHomeFragmentToGameDescriptionFragment()
+            val directions = HomeFragmentDirections.actionHomeFragmentToGameDescriptionFragment(it)
             findNavController().navigate(directions)
         }
 
@@ -111,14 +125,64 @@ class HomeFragment : Fragment() {
         mainRecyclerView.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        mainRecyclerView.adapter = mAdapter
+        mainRecyclerView.adapter = adapterGeneros
 
 
         val secundaryRecyclerView: RecyclerView = binding.gamesRecyclerView
         secundaryRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        secundaryRecyclerView.adapter = mAdapter2
-
-        }
+        secundaryRecyclerView.adapter = adapterJuegos
 
     }
+
+    private fun getGeneros() {
+        val call = ApiRest.service.getGeneros()
+        call.enqueue(object : Callback<GenerosResponse> {
+            override fun onResponse(
+                call: Call<GenerosResponse>,
+                response: Response<GenerosResponse>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+                    dataGeneros.clear()
+                    dataGeneros.addAll(body)
+                    adapterGeneros?.notifyDataSetChanged()
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<GenerosResponse>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
+    }
+
+    private fun getJuegos() {
+        val call = ApiRest.service.getJuegos()
+        call.enqueue(object : Callback<JuegosResponse> {
+            override fun onResponse(
+                call: Call<JuegosResponse>,
+                response: Response<JuegosResponse>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+                    dataJuegos.clear()
+                    dataJuegos.addAll(body)
+                    adapterJuegos?.notifyDataSetChanged()
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<JuegosResponse>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
+    }
+
+}

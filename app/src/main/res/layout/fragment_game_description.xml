@@ -33,6 +33,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/miPrecioJuego"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
@@ -51,7 +52,7 @@
             android:textStyle="bold" />
     </LinearLayout>
         <TextView
-            android:id="@+id/miTextoJuego"
+            android:id="@+id/miTituloJuego"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -83,6 +84,7 @@
                 app:cardCornerRadius="500dp">
 
                 <ImageView
+                    android:id="@+id/miFotoPerfilVendedor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="#36DFE4" />
@@ -95,7 +97,7 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/tvSeller"
+                    android:id="@+id/miNombreVendedor"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="Pepito Ramirez"

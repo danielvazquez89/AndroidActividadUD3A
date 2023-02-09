@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.actividad3a.data.models.GenerosResponse
 
 
 class UploadAdapter(private val mDataSet: ArrayList<GenerosResponse.GenerosResponseItem>, var onClick: (GenerosResponse.GenerosResponseItem) -> Unit) :

@@ -1,4 +1,4 @@
-package com.example.actividad3a
+package com.example.actividad3a.data.models
 
 
 import com.google.gson.annotations.SerializedName

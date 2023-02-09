@@ -8,12 +8,14 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/miRegisterLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Registro"
         android:textAlignment="center"
         android:textSize="30dp"
+        android:clickable="true"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 

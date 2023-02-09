@@ -8,8 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.actividad3a.data.models.GenerosResponse
 
-class HomeAdapter(private val mDataSet: List<genre_content>, var onClick: (genre_content) -> Unit) :
+class HomeAdapter(private val mDataSet: ArrayList<GenerosResponse.GenerosResponseItem>, var onClick: (GenerosResponse.GenerosResponseItem) -> Unit) :
     RecyclerView.Adapter<HomeAdapter.MainViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.genre_list, parent, false)
@@ -37,10 +38,10 @@ class HomeAdapter(private val mDataSet: List<genre_content>, var onClick: (genre
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
         val mytexto = v.findViewById<TextView>(R.id.miTextoGenero)
         val miFoto = v.findViewById<ImageView>(R.id.imagenGenero)
-        fun bindItems(data: genre_content) {
+        fun bindItems(data: GenerosResponse.GenerosResponseItem) {
             //mytexto.text = data
-            mytexto.text = data.nombreGenero
-            Glide.with(miFoto.context).load(data.fotoGenero).into(miFoto)
+            mytexto.text = data.tipoGenero
+            Glide.with(miFoto.context).load(data.urlImagen).into(miFoto)
         }
     }
 }

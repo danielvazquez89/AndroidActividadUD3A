@@ -124,6 +124,9 @@
         <action
             android:id="@+id/action_gameDescriptionFragment_to_perfilUsuarioFragment"
             app:destination="@id/perfilUsuarioFragment" />
+        <argument
+            android:name="Juego"
+            app:argType="com.example.actividad3a.data.models.JuegosResponse$JuegosResponseItem" />
     </fragment>
     <fragment
         android:id="@+id/comprasFragment"

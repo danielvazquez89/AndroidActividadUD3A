@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,9 @@ import android.widget.EditText
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import com.example.actividad3a.data.models.UserRequest
+import com.example.actividad3a.data.remotes.ApiManager
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentRegisterBinding
 import com.example.navigationcomponent.Validaciones
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -46,6 +49,12 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.miRegisterLabel.setOnClickListener {
+            binding.textFieldEmail.editText?.setText("email@gmail.com")
+            binding.textFieldContrasena.editText?.setText("contraseña1234")
+            binding.textFieldNombre.editText?.setText("Juanito")
+            binding.textFieldApellidos.editText?.setText("Benitez")
+        }
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         binding.btRegistrarse.setOnClickListener {
             val objetoValidaciones = Validaciones()
@@ -65,11 +74,14 @@ class RegisterFragment : Fragment() {
                 val nombre = binding.textFieldNombre.editText?.text.toString()
                 val apellidos = binding.textFieldApellidos.editText?.text.toString()
                 val email = binding.textFieldEmail.editText?.text.toString()
-                //val contrasena = binding.textFieldContrasena.editText?.text.toString()
+                val contrasena = binding.textFieldContrasena.editText?.text.toString()
                 val fechaNacimiento = binding.textFieldFechaNacimiento.editText?.text.toString()
-                val user = User(nombre,email,apellidos,fechaNacimiento)
-                val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
-                findNavController().navigate(action)
+                //val user = User(nombre,email,apellidos,fechaNacimiento)
+                val user = UserRequest(apellidos, "ciudad", "12345", contrasena, "direccion", fechaNacimiento, email, nombre)
+                ApiRest.initService()
+                postUser(user)
+                //val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
+                //findNavController().navigate(action)
             }
         }
     }
@@ -106,6 +118,18 @@ class RegisterFragment : Fragment() {
             ).run {
                 maxDate?.time?.also { datePicker.maxDate = it }
                 show()
+            }
+        }
+    }
+
+    private fun postUser(user: UserRequest) {
+        val apiService = ApiManager()
+        apiService.addUser(user) {
+            if (it?.apellidos != null) {
+                // it = newly added user parsed as response
+                // it?.id = newly added user ID
+            } else {
+                Log.d("Hola","Error registering new user")
             }
         }
     }
