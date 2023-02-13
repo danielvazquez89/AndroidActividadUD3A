@@ -61,14 +61,13 @@
             android:textSize="20dp" />
 
 </LinearLayout>
-            <ImageView
-                android:id="@+id/corazon"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:clickable="true"
-                android:layout_marginLeft="200dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_baseline_favorite_border_24" />
+            <CheckBox
+                android:id="@+id/cbHeart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_wishlist_item"
+                app:useMaterialThemeColors="false"
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
