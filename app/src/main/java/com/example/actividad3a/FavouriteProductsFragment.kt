@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.actividad3a.data.models.GenerosResponse
 import com.example.actividad3a.data.models.JuegosFavoritosResponse
 import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.models.Preferences
 import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentFavouriteProductsBinding
 import retrofit2.Call
@@ -44,10 +46,17 @@ class favouriteProductsFragment : Fragment() {
             game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Last of Us"), game_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Rayman 3"), game_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "NintenDogs")
             , game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Wiisports"), game_content("https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg", "Loney")
         )
+        var userId = 0
+        Preferences.getUserId()?.let { Log.i("MainActivity" , it)
+        userId = it.toInt()}
+        if (userId != null) {
+            getJuegosFavoritosByUserId(userId)
+        }
 
 
         adapterJuegos = FavoriteGameAdapter(dataJuegos) {
-
+            //val directions = .actionHomeFragmentToGameDescriptionFragment(it)
+            //findNavController().navigate(directions)
         }
 
         val mainRecyclerView: RecyclerView = binding.favoriteGamesRecyclerView
@@ -69,8 +78,9 @@ class favouriteProductsFragment : Fragment() {
                     dataJuegosFavoritosUsuario.clear()
                     dataJuegosFavoritosUsuario.addAll(body)
                     // Get juegos by id aquí
-
-
+                    for (Item: JuegosFavoritosResponse.JuegosFavoritosResponseItem in dataJuegosFavoritosUsuario) {
+                        getJuegoById(Item.idProducto)
+                    }
 // Imprimir aqui el listado con logs
                 } else {
                     response.errorBody()?.string()?.let { Log.e(TAG, it) }

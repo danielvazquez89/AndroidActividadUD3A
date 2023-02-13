@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.actividad3a.R
 import com.example.actividad3a.databinding.FragmentTuBinding
+import com.example.actividad3a.setActivityTitle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class TuFragment : Fragment() {
@@ -35,32 +36,38 @@ class TuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = true
         binding.irAPerfilLayout.setOnClickListener {
-            val directions = TuFragmentDirections.actionTuFragmentToPerfilFragment()
+            val directions =
+                com.example.actividad3a.TuFragmentDirections.actionTuFragmentToPerfilFragment()
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
         binding.irACompras.setOnClickListener {
-            val directions = TuFragmentDirections.actionTuFragmentToComprasFragment()
+            val directions =
+                com.example.actividad3a.TuFragmentDirections.actionTuFragmentToComprasFragment()
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
         binding.irAVentas.setOnClickListener {
-            val directions = TuFragmentDirections.actionTuFragmentToVentasFragment()
+            val directions =
+                com.example.actividad3a.TuFragmentDirections.actionTuFragmentToVentasFragment()
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
         binding.irAMonedero.setOnClickListener {
-            val directions = TuFragmentDirections.actionTuFragmentToMonederoFragment()
+            val directions =
+                com.example.actividad3a.TuFragmentDirections.actionTuFragmentToMonederoFragment()
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
         binding.irAConfiguracion.setOnClickListener {
-            val directions = TuFragmentDirections.actionTuFragmentToConfiguracionFragment()
+            val directions =
+                com.example.actividad3a.TuFragmentDirections.actionTuFragmentToConfiguracionFragment()
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }
         binding.irAAyuda.setOnClickListener {
-            val directions = TuFragmentDirections.actionTuFragmentToAyudaFragment()
+            val directions =
+                com.example.actividad3a.TuFragmentDirections.actionTuFragmentToAyudaFragment()
             findNavController().navigate(directions)
             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
         }

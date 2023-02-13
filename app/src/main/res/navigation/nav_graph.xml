@@ -178,4 +178,12 @@
             android:id="@+id/action_uploadDetailsFragment_to_uploadFragment"
             app:destination="@id/uploadFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favouriteProductsFragment2"
+        android:name="com.example.actividad3a.favouriteProductsFragment"
+        android:label="favouriteProductsFragment" >
+        <action
+            android:id="@+id/action_favouriteProductsFragment2_to_gameDescriptionFragment"
+            app:destination="@id/gameDescriptionFragment" />
+    </fragment>
 </navigation>

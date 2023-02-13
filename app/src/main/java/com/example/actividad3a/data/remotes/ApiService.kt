@@ -16,6 +16,11 @@ interface ApiService {
         @Path(value = "id", encoded = false) key: Int
     ): Call<JuegosResponse.JuegosResponseItem>
 
+    @GET("users/email/{mail}")
+    fun getUserByEmail(
+        @Path(value = "mail", encoded = false) key: String
+    ): Call<UsersResponse.UsersResponseItem>
+
     @GET("juegos_favoritos/{id}")
     fun getJuegosFavoritosById(
         @Path(value = "id", encoded = false) key: Int

@@ -40,10 +40,12 @@ class FavoriteGameAdapter(
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
         val mytexto = v.findViewById<TextView>(R.id.miTextoJuego)
         val miFoto = v.findViewById<ImageView>(R.id.imagenJuego)
+        val miPrecio = v.findViewById<TextView>(R.id.miPrecioJuego)
         fun bindItems(data: JuegosResponse.JuegosResponseItem) {
             //mytexto.text = data
             mytexto.text = data.nombreJuego
             Glide.with(miFoto.context).load(data.urlImagen).into(miFoto)
+            miPrecio.text = data.precio.toString()
         }
     }
 

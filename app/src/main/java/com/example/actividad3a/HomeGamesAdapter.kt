@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.actividad3a.data.models.JuegosResponse
-import org.w3c.dom.Text
 
 class HomeGamesAdapter(private val mDataSet: ArrayList<JuegosResponse.JuegosResponseItem>, var onClick: (JuegosResponse.JuegosResponseItem) -> Unit) :
     RecyclerView.Adapter<HomeGamesAdapter.MainViewHolder>() {

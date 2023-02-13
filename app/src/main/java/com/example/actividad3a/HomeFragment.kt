@@ -24,7 +24,7 @@ import retrofit2.Response
 
 
 class HomeFragment : Fragment() {
-    val args: com.example.actividad3a.HomeFragmentArgs by navArgs()
+    val args: HomeFragmentArgs by navArgs()
     var datos: UserRequest? = null
     private var _binding: FragmentHomeBinding? = null
     val TAG = "HomeFragment"
