@@ -33,6 +33,7 @@ class UploadFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentUploadBinding.inflate(inflater, container, false)
         val view = binding.root
+        setActivityTitle("Subir juego")
         return view
     }
 

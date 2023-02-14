@@ -81,25 +81,28 @@ class UploadDetailsFragment : Fragment() {
             val consolaJuego = binding.miConsolaJuego.text.toString()
             val descripcionJuego = binding.miDescripcionJuego.text.toString()
             if (precioJuego != "" && tituloJuego != "" && consolaJuego != "" && descripcionJuego != "") {
-                Toast.makeText(
-                    requireContext(), "Producto subido", Toast.LENGTH_SHORT
-                ).show()
-                var userId = 0
-                Preferences.getUserId()?.let {
-                    Log.i("MainActivity", it)
-                    userId = it.toInt()
+                if (precioJuego.toDoubleOrNull() != null) {
+                    Toast.makeText(
+                        requireContext(), "Producto subido", Toast.LENGTH_SHORT
+                    ).show()
+                    var userId = 0
+                    Preferences.getUserId()?.let {
+                        Log.i("MainActivity", it)
+                        userId = it.toInt()
+                    }
+                    val juego = JuegosResponse.JuegosResponseItem(
+                        descripcionJuego,
+                        args.genero,
+                        null,
+                        userId,
+                        tituloJuego,
+                        precioJuego.toDouble(),
+                        ""
+                    )
+                    postJuego(juego)
+                } else {
+                    binding.miPrecioJuego.error = "Ponga un precio adecuado por favor"
                 }
-                val juego = JuegosResponse.JuegosResponseItem(
-                    descripcionJuego,
-                    args.genero,
-                    null,
-                    userId,
-                    tituloJuego,
-                    precioJuego.toDouble(),
-                    ""
-                )
-                postJuego(juego)
-
             } else {
                 Toast.makeText(
                     requireContext(), "Rellene todos los campos por favor", Toast.LENGTH_SHORT

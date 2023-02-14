@@ -16,6 +16,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
+import com.example.actividad3a.data.models.Preferences
 import com.example.actividad3a.data.models.UserRequest
 import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentPerfilBinding
@@ -126,7 +127,12 @@ class PerfilFragment : Fragment() {
                 requireContext(),
                 "Borrar", Toast.LENGTH_SHORT
             ).show()
-            deleteUser(9421)
+            var userId = 0
+            Preferences.getUserId()?.let {
+                Log.i("MainActivity", it)
+                userId = it.toInt()
+            }
+            deleteUser(userId)
             val directions = PerfilFragmentDirections.actionPerfilFragmentToTuFragment()
             findNavController().navigate(directions)
         }

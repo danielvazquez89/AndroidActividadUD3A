@@ -67,8 +67,10 @@ interface ApiService {
     @POST("juegos/")
     fun addJuego(@Body juegoData: JuegosResponse.JuegosResponseItem): Call<JuegosResponse>
 
-    @DELETE("users/")
-    fun deleteUser(@Body userData: Int): Call<UserRequest>
+    @DELETE("users/{id_usuario}")
+    fun deleteUser(
+        @Path(value = "id_usuario", encoded = false) key: Int
+    ): Call<UserRequest>
 /*
     @GET("discover/movie")
     fun getMoviesByGenre(

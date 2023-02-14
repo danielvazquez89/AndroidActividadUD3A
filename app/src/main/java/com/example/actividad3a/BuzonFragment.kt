@@ -33,6 +33,7 @@ class BuzonFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentBuzonBinding.inflate(inflater, container, false)
         val view = binding.root
+       setActivityTitle("Chats")
         return view
     }
 
