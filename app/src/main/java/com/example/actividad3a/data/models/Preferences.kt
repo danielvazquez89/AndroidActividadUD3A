@@ -13,7 +13,7 @@ object Preferences {
         return EncryptedSharedPreferences.create(
             masterKeyAlias,
             "user_prefs",
-            Application .instance,
+            Application.instance,
             EncryptedSharedPreferences.PrefKeyEncryptionScheme .AES256_SIV,
             EncryptedSharedPreferences.PrefValueEncryptionScheme .AES256_GCM
         )
