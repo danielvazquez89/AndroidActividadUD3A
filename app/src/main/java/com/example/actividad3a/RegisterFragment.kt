@@ -65,7 +65,8 @@ class RegisterFragment : Fragment() {
             val emailValido = objetoValidaciones.esEmailValido(binding.textFieldEmail)
             val nombreValido = objetoValidaciones.esNombreValido(binding.textFieldNombre)
             val apellidosValidos = objetoValidaciones.esNombreValido(binding.textFieldApellidos)
-            val validoContrasena = objetoValidaciones.esContrasenaValida(binding.textFieldContrasena)
+            val validoContrasena =
+                objetoValidaciones.esContrasenaValida(binding.textFieldContrasena)
             var fechaVacia = false
             if (binding.textFieldFechaNacimiento.editText?.text?.isEmpty() == true) {
                 fechaVacia = true
@@ -81,10 +82,19 @@ class RegisterFragment : Fragment() {
                 val contrasena = binding.textFieldContrasena.editText?.text.toString()
                 val fechaNacimiento = binding.textFieldFechaNacimiento.editText?.text.toString()
                 //val user = User(nombre,email,apellidos,fechaNacimiento)
-                val user = UserRequest(apellidos, "ciudad", "12345", contrasena, "direccion", fechaNacimiento, email, nombre, null, null)
+                val user = UserRequest(
+                    apellidos,
+                    "ciudad",
+                    "12345",
+                    contrasena,
+                    "direccion",
+                    fechaNacimiento,
+                    email,
+                    nombre,
+                    null,
+                    null
+                )
                 postUser(user)
-                val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
-                findNavController().navigate(action)
             }
         }
     }
@@ -93,7 +103,7 @@ class RegisterFragment : Fragment() {
         val linkTextView = binding.iniciarSesion
         linkTextView.setLinkTextColor(Color.BLUE)
         linkTextView.setOnClickListener {
-            findNavController().navigate( com.example.actividad3a.R.id.action_registerFragment_to_loginFragment)
+            findNavController().navigate(com.example.actividad3a.R.id.action_registerFragment_to_loginFragment)
         }
     }
 
@@ -135,6 +145,9 @@ class RegisterFragment : Fragment() {
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
                     Log.i(TAG, body.toString())
+                    val action =
+                        RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
+                    findNavController().navigate(action)
 // Imprimir aqui el listado con logs
                 } else {
                     response.errorBody()?.string()?.let { Log.e(TAG, it) }

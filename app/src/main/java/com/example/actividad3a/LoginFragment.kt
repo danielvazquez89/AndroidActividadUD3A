@@ -50,27 +50,17 @@ class LoginFragment : Fragment() {
         }
 //        Log.i("RegisterFragment", args.name)
         binding.btLogin.setOnClickListener {
-            val objetoValidaciones = Validaciones()
+            //val objetoValidaciones = Validaciones()
             //val emailValido = objetoValidaciones.esEmailValido(binding.textFieldEmail)
             //val validoContrasena =
-            objetoValidaciones.esContrasenaValida(binding.textFieldContrasena)
+            //objetoValidaciones.esContrasenaValida(binding.textFieldContrasena)
             //if (emailValido && validoContrasena) {
             //Iniciar sesion
             val email = binding.textFieldEmail.editText?.text.toString()
             val contrasena = binding.textFieldContrasena.editText?.text.toString()
-            val user = UserRequest("", email, "", "", "", "", "", "", null, null)
-            val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(user)
-            getUserByEmail(email)
-            val userDB = dataUser
-            if (userDB?.contrasena != contrasena) {
-                binding.textFieldContrasena.error = "Contraseña incorrecta"
-            } else {
-                Preferences.setUserId(userDB.idUsuario)
-                Log.d("LoginFragment", userDB.idUsuario.toString())
+            val user = UserRequest("", email, "", contrasena, "", "", "", "", null, null)
+            getUserByEmail(email, user)
 
-                //Preferences.getUser()?.let { Log.i("MainActivity" , it)
-                findNavController().navigate(action)
-            }
         }
         //}
     }
@@ -83,7 +73,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun getUserByEmail(email: String) {
+    private fun getUserByEmail(email: String, user: UserRequest) {
         val call = ApiRest.service.getUserByEmail(email)
         call.enqueue(object : Callback<UsersResponse.UsersResponseItem> {
             override fun onResponse(
@@ -96,6 +86,17 @@ class LoginFragment : Fragment() {
                     dataUser = body
                     //adapterJuegos?.notifyDataSetChanged()
 // Imprimir aqui el listado con logs
+                    val userDB = dataUser
+                    if (userDB?.contrasena != binding.textFieldContrasena.editText?.text.toString()) {
+                        binding.textFieldContrasena.error = "Contraseña incorrecta"
+                    } else {
+                        Preferences.setUserId(userDB.idUsuario)
+                        Log.d("LoginFragment", userDB.idUsuario.toString())
+
+                        //Preferences.getUser()?.let { Log.i("MainActivity" , it)
+                        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment(user)
+                        findNavController().navigate(action)
+                    }
                 } else {
                     response.errorBody()?.string()?.let { Log.e(TAG, it) }
                     binding.textFieldEmail.error = "Este email no existe en la base de datos"
