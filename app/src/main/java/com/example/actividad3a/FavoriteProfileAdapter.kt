@@ -1,7 +1,5 @@
 package com.example.actividad3a
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.actividad3a.data.models.UsersResponse
 
 
-class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onClick: (user_content) -> Unit) :
+class FavoriteProfileAdapter(private val mDataSet: ArrayList<UsersResponse.UsersResponseItem>, var onClick: (UsersResponse.UsersResponseItem) -> Unit) :
     RecyclerView.Adapter<FavoriteProfileAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -38,9 +37,9 @@ class FavoriteProfileAdapter (private val mDataSet: List<user_content>, var onCl
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
         val mytexto = v.findViewById<TextView>(R.id.miNombreUsuario)
         val miFoto = v.findViewById<ImageView>(R.id.imagenUsuario)
-        fun bindItems(data: user_content) {
+        fun bindItems(data: UsersResponse.UsersResponseItem) {
             //mytexto.text = data
-            mytexto.text = data.nombreUsuario
-            Glide.with(miFoto.context).load(data.fotoUsuario).into(miFoto)
+            mytexto.text = data.nombre
+            //Glide.with(miFoto.context).load("https://cdn-icons-png.flaticon.com/512/64/64572.png").into(miFoto)
         }
     } }

@@ -3,6 +3,7 @@ package com.example.actividad3a
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,9 @@ class FavoriteGameAdapter(
             //else
             //  holder.mytexto.text = "\uFEFF\uD83D\uDEA9\uFEFF "
         }
+        holder.corazon.setOnClickListener {
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -41,6 +45,7 @@ class FavoriteGameAdapter(
         val mytexto = v.findViewById<TextView>(R.id.miTextoJuego)
         val miFoto = v.findViewById<ImageView>(R.id.imagenJuego)
         val miPrecio = v.findViewById<TextView>(R.id.miPrecioJuego)
+        val corazon = v.findViewById<CheckBox>(R.id.cbHeart)
         fun bindItems(data: JuegosResponse.JuegosResponseItem) {
             //mytexto.text = data
             mytexto.text = data.nombreJuego

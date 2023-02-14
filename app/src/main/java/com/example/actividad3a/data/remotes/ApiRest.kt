@@ -7,7 +7,7 @@ object ApiRest {
     lateinit var service: ApiService
     //tu ip + 8080
     lateinit var retrofit: Retrofit
-    val URL = "http://10.1.204.198:8080/"
+    val URL = "http://192.168.0.24:8080/"
     val URL_IMAGES = "https://image.tmdb.org/t/p/w500"
     init {
         initService()

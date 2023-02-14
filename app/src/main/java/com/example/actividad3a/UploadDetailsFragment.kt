@@ -2,9 +2,11 @@ package com.example.actividad3a
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +19,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.models.UserRequest
+import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentUploadDetailsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.File
 
 class UploadDetailsFragment : Fragment() {
@@ -71,6 +79,10 @@ class UploadDetailsFragment : Fragment() {
                 Toast.makeText(
                     requireContext(), "Producto subido", Toast.LENGTH_SHORT
                 ).show()
+
+                //val juego = JuegosResponse.JuegosResponseItem()
+                //postJuego(juego)
+
                 val directions =
                     UploadDetailsFragmentDirections.actionUploadDetailsFragmentToUploadFragment()
                 findNavController().navigate(directions)
@@ -160,6 +172,31 @@ class UploadDetailsFragment : Fragment() {
         return FileProvider.getUriForFile(
             requireContext(), "${BuildConfig.APPLICATION_ID}.provider", tmpFile
         )
+    }
+
+    private fun postJuego(juego: JuegosResponse.JuegosResponseItem) {
+/*
+        val call = ApiRest.service.addJuego(juego)
+        call.enqueue(object : Callback<JuegosResponse.JuegosResponseItem> {
+            override fun onResponse(
+                call: Call<JuegosResponse.JuegosResponseItem>,
+                response: Response<JuegosResponse.JuegosResponseItem>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(TAG, body.toString())
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<JuegosResponse.JuegosResponseItem>, t: Throwable) {
+                Log.e(TAG, t.message.toString())
+            }
+        })
+
+ */
     }
 }
 

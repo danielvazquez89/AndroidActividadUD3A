@@ -26,7 +26,8 @@ class favouriteProductsFragment : Fragment() {
     val TAG = "Favourite Products"
     private var adapterJuegos: FavoriteGameAdapter? = null
     var dataJuegos: ArrayList<JuegosResponse.JuegosResponseItem> = ArrayList()
-    var dataJuegosFavoritosUsuario: ArrayList<JuegosFavoritosResponse.JuegosFavoritosResponseItem> = ArrayList()
+    var dataJuegosFavoritosUsuario: ArrayList<JuegosFavoritosResponse.JuegosFavoritosResponseItem> =
+        ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,15 +41,29 @@ class favouriteProductsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-      //  activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
+        //  activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
 
         var game_favorite_content_list = listOf(
-            game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Last of Us"), game_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Rayman 3"), game_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "NintenDogs")
-            , game_content("https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg", "Wiisports"), game_content("https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg", "Loney")
+            game_content(
+                "https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg",
+                "Last of Us"
+            ),
+            game_content("https://cdn-icons-png.flaticon.com/512/8027/8027925.png", "Rayman 3"),
+            game_content("https://cdn-icons-png.flaticon.com/512/5846/5846307.png", "NintenDogs"),
+            game_content(
+                "https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg",
+                "Wiisports"
+            ),
+            game_content(
+                "https://cdn.imgbin.com/2/13/18/imgbin-chess-computer-icons-board-game-strategy-video-game-chess-H0QHtkEXBGcqywU54PWv3d2xg.jpg",
+                "Loney"
+            )
         )
         var userId = 0
-        Preferences.getUserId()?.let { Log.i("MainActivity" , it)
-        userId = it.toInt()}
+        Preferences.getUserId()?.let {
+            Log.i("MainActivity", it)
+            userId = it.toInt()
+        }
         if (userId != null) {
             getJuegosFavoritosByUserId(userId)
         }
@@ -65,6 +80,7 @@ class favouriteProductsFragment : Fragment() {
         mainRecyclerView.adapter = adapterJuegos
 
     }
+
     private fun getJuegosFavoritosByUserId(id: Int) {
         val call = ApiRest.service.getJuegosFavoritosById(id)
         call.enqueue(object : Callback<JuegosFavoritosResponse> {

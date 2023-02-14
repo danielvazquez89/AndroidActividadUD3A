@@ -82,7 +82,6 @@ class RegisterFragment : Fragment() {
                 val fechaNacimiento = binding.textFieldFechaNacimiento.editText?.text.toString()
                 //val user = User(nombre,email,apellidos,fechaNacimiento)
                 val user = UserRequest(apellidos, "ciudad", "12345", contrasena, "direccion", fechaNacimiento, email, nombre, null, null)
-                ApiRest.initService()
                 postUser(user)
                 val action = RegisterFragmentDirections.actionRegisterFragmentToHomeFragment(user)
                 findNavController().navigate(action)
