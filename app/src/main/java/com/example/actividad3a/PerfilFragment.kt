@@ -2,6 +2,7 @@ package com.example.actividad3a
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -18,6 +19,7 @@ import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import com.example.actividad3a.data.models.Preferences
 import com.example.actividad3a.data.models.UserRequest
+import com.example.actividad3a.data.models.UsersResponse
 import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentPerfilBinding
 import retrofit2.Call
@@ -106,6 +108,13 @@ class PerfilFragment : Fragment() {
             checkPermissions()
             startGallery()
         }
+
+        var userId = 0
+        Preferences.getUserId()?.let {
+            Log.i("MainActivity", it)
+            userId = it.toInt()
+        }
+        getUserbyId(userId)
 
         builder.setNeutralButton(android.R.string.no) { dialog, which ->
             Toast.makeText(
@@ -220,4 +229,29 @@ class PerfilFragment : Fragment() {
             }
         })
     }
+
+    private fun getUserbyId(id: Int) {
+        val call = ApiRest.service.getUserById(id)
+        call.enqueue(object : Callback<UsersResponse.UsersResponseItem> {
+            override fun onResponse(
+                call: Call<UsersResponse.UsersResponseItem>,
+                response: Response<UsersResponse.UsersResponseItem>
+            ) {
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    Log.i(ContentValues.TAG, body.toString())
+                    binding.nombreUsuario.text = "${body.nombre} ${body.apellidos}"
+                    binding.miDireccionUsuario.text = "${body.codigoPostal}, ${body.ciudad}"
+// Imprimir aqui el listado con logs
+                } else {
+                    response.errorBody()?.string()?.let { Log.e(ContentValues.TAG, it) }
+                }
+            }
+
+            override fun onFailure(call: Call<UsersResponse.UsersResponseItem>, t: Throwable) {
+                Log.e(ContentValues.TAG, t.message.toString())
+            }
+        })
+    }
+
 }
