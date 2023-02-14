@@ -21,6 +21,16 @@ interface ApiService {
         @Path(value = "mail", encoded = false) key: String
     ): Call<UsersResponse.UsersResponseItem>
 
+    @GET("chat/user/{id}")
+    fun getChatsUser(
+        @Path(value = "id", encoded = false) key: Int
+    ): Call<ChatResponse>
+
+    @GET("mensaje/chat/{id_chat}")
+    fun getMensajesEnChat(
+        @Path(value = "id_chat", encoded = false) key: Int
+    ): Call<MensajesChatResponse>
+
     @GET("juegos_favoritos/{id}")
     fun getJuegosFavoritosById(
         @Path(value = "id", encoded = false) key: Int
@@ -55,7 +65,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("juegos/")
-    fun addJuego(@Body juegoData: JuegosResponse.JuegosResponseItem): Call<JuegosFavoritosResponse.JuegosFavoritosResponseItem>
+    fun addJuego(@Body juegoData: JuegosResponse.JuegosResponseItem): Call<JuegosResponse>
 
     @DELETE("users/")
     fun deleteUser(@Body userData: Int): Call<UserRequest>

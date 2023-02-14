@@ -20,6 +20,7 @@ import androidx.core.content.FileProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.actividad3a.data.models.JuegosResponse
+import com.example.actividad3a.data.models.Preferences
 import com.example.actividad3a.data.models.UserRequest
 import com.example.actividad3a.data.remotes.ApiRest
 import com.example.actividad3a.databinding.FragmentUploadDetailsBinding
@@ -75,17 +76,30 @@ class UploadDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ivImage = binding.miImagenJuego
         binding.miBotonUpload.setOnClickListener {
-            if (binding.miPrecioJuego.text.toString() != "" && binding.miTituloJuego.text.toString() != "" && binding.miConsolaJuego.text.toString() != "" && binding.miDescripcionJuego.text.toString() != "") {
+            val precioJuego = binding.miPrecioJuego.text.toString()
+            val tituloJuego = binding.miTituloJuego.text.toString()
+            val consolaJuego = binding.miConsolaJuego.text.toString()
+            val descripcionJuego = binding.miDescripcionJuego.text.toString()
+            if (precioJuego != "" && tituloJuego != "" && consolaJuego != "" && descripcionJuego != "") {
                 Toast.makeText(
                     requireContext(), "Producto subido", Toast.LENGTH_SHORT
                 ).show()
+                var userId = 0
+                Preferences.getUserId()?.let {
+                    Log.i("MainActivity", it)
+                    userId = it.toInt()
+                }
+                val juego = JuegosResponse.JuegosResponseItem(
+                    descripcionJuego,
+                    args.genero,
+                    null,
+                    userId,
+                    tituloJuego,
+                    precioJuego.toDouble(),
+                    ""
+                )
+                postJuego(juego)
 
-                //val juego = JuegosResponse.JuegosResponseItem()
-                //postJuego(juego)
-
-                val directions =
-                    UploadDetailsFragmentDirections.actionUploadDetailsFragmentToUploadFragment()
-                findNavController().navigate(directions)
             } else {
                 Toast.makeText(
                     requireContext(), "Rellene todos los campos por favor", Toast.LENGTH_SHORT
@@ -175,28 +189,28 @@ class UploadDetailsFragment : Fragment() {
     }
 
     private fun postJuego(juego: JuegosResponse.JuegosResponseItem) {
-/*
         val call = ApiRest.service.addJuego(juego)
-        call.enqueue(object : Callback<JuegosResponse.JuegosResponseItem> {
+        call.enqueue(object: Callback<JuegosResponse> {
             override fun onResponse(
-                call: Call<JuegosResponse.JuegosResponseItem>,
-                response: Response<JuegosResponse.JuegosResponseItem>
+                call: Call<JuegosResponse>,
+                response: Response<JuegosResponse>
             ) {
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
                     Log.i(TAG, body.toString())
 // Imprimir aqui el listado con logs
+                    val directions =
+                        UploadDetailsFragmentDirections.actionUploadDetailsFragmentToUploadFragment()
+                    findNavController().navigate(directions)
                 } else {
                     response.errorBody()?.string()?.let { Log.e(TAG, it) }
                 }
             }
 
-            override fun onFailure(call: Call<JuegosResponse.JuegosResponseItem>, t: Throwable) {
+            override fun onFailure(call: Call<JuegosResponse>, t: Throwable) {
                 Log.e(TAG, t.message.toString())
             }
         })
-
- */
     }
 }
 

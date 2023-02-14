@@ -42,7 +42,7 @@ class favouriteProductsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //  activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.isVisible = false
-
+/*
         var game_favorite_content_list = listOf(
             game_content(
                 "https://upload.wikimedia.org/wikipedia/en/4/46/Video_Game_Cover_-_The_Last_of_Us.jpg",
@@ -59,6 +59,8 @@ class favouriteProductsFragment : Fragment() {
                 "Loney"
             )
         )
+
+ */
         var userId = 0
         Preferences.getUserId()?.let {
             Log.i("MainActivity", it)

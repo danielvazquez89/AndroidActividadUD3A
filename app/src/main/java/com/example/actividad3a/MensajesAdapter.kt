@@ -1,17 +1,14 @@
 package com.example.actividad3a
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.actividad3a.data.models.MensajesChatResponse
 
 
-class MensajesAdapter (private val mDataSet: List<message_content>) :
+class MensajesAdapter(private val mDataSet: ArrayList<MensajesChatResponse.MensajesChatResponseItem>) :
     RecyclerView.Adapter<MensajesAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
@@ -31,14 +28,14 @@ class MensajesAdapter (private val mDataSet: List<message_content>) :
     }
 
     inner class MainViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
-        val tvHoraMensajeEnviado = v.findViewById<TextView>(R.id.tvMensajePorUsario)
-        val tvMensajePorUsario = v.findViewById<TextView>(R.id.tvHoraMensajeEnviado)
+        val tvMensajePorUsario = v.findViewById<TextView>(R.id.tvMensajePorUsario)
+        val tvHoraMensajeEnviado = v.findViewById<TextView>(R.id.tvHoraMensajeEnviado)
 
 
-        fun bindItems(data: message_content) {
+        fun bindItems(data: MensajesChatResponse.MensajesChatResponseItem) {
 
-            tvHoraMensajeEnviado.text = data.fechaMensaje
-            tvMensajePorUsario.text = data.textoMensaje
+            //tvHoraMensajeEnviado.text = data.
+            tvMensajePorUsario.text = data.contenidoMensaje
 
         }
     }

@@ -9,7 +9,7 @@ class JuegosResponse : ArrayList<JuegosResponse.JuegosResponseItem>(){
         val descripcionJuego: String,
         val genero: String,
         @SerializedName("id_producto")
-        val idProducto: Int,
+        val idProducto: Int?,
         @SerializedName("id_vendedor")
         val idVendedor: Int,
         @SerializedName("nombre_juego")
